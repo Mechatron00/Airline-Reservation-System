@@ -5,7 +5,7 @@
 # Author: Dinesh Haribhau Dixit
 
 Flowchart:
-<br><img height="720" src="C:\Users\dixit\eclipse-workspace\AirlineSystem\AirlineSystemFlowchart.png" title="flowchart" width="1280"/><br>
+<br><img height="720" src="AirlineSystemFlowchart.png" title="flowchart" width="1280"/><br>
 
 Endpoints:
 <br><img height="720" src="C:\Users\dixit\eclipse-workspace\AirlineSystem\endpoints.png" width="1280"/><br>
