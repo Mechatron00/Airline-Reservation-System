@@ -8,10 +8,10 @@ Flowchart:
 <br><img height="720" src="AirlineSystemFlowchart.png" title="flowchart" width="1280"/><br>
 
 Endpoints:
-<br><img height="720" src="C:\Users\dixit\eclipse-workspace\AirlineSystem\endpoints.png" width="1280"/><br>
+<br><img height="720" src="endpoints.png" width="1280"/><br>
 
 Overview:
-<img src="C:\Users\dixit\eclipse-workspace\AirlineSystem\AirlineSystem.png"/><br>
+<img src="AirlineSystem.png"/><br>
 Working Methods:                                                               
 1.Create passenger                                                                                         
 2.Get Passenger                                                                                                
