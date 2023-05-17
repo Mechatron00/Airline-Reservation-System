@@ -1,0 +1,200 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AirlineSystemApplication {
+  + AirlineSystemApplication(): 
+  + main(String[]): void
+}
+class AirlineSystemApplicationTests {
+  ~ AirlineSystemApplicationTests(): 
+  ~ contextLoads(): void
+}
+class BadRequest {
+  + BadRequest(): 
+  + BadRequest(int, String): 
+  - message: String
+  - code: int
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+   code: int
+   message: String
+}
+class ExceptionHandle {
+  + ExceptionHandle(BadRequest): 
+  - badRequest: BadRequest
+  + toString(): String
+  + hashCode(): int
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+   badRequest: BadRequest
+}
+class Flight {
+  + Flight(): 
+  + Flight(String, String, String, int, String, double, Date, Date, Plane, List<Passenger>): 
+  - flightNumber: String
+  - passengers: List<Passenger>
+  - plane: Plane
+  - departureTime: Date
+  - arrivalTime: Date
+  - fromLocation: String
+  - destination: String
+  - seatLeft: int
+  - description: String
+  - price: double
+  + equals(Object): boolean
+  + hashCode(): int
+   description: String
+   flightNumber: String
+   passengers: List<Passenger>
+   price: double
+   departureTime: Date
+   plane: Plane
+   arrivalTime: Date
+   seatLeft: int
+   fromLocation: String
+   destination: String
+}
+class FlightController {
+  + FlightController(): 
+  + deleteFlight(String): ResponseEntity<?>
+  + updateFlight(String, double, String, String, String, String, String, int, String, String, String): ResponseEntity<?>
+  + getFlightByNumber(String): ResponseEntity<?>
+}
+interface FlightRepository << interface >> {
+  + getFlightByFlightNumber(String): Optional<Flight>
+}
+class FlightService {
+  + FlightService(): 
+  + deleteFlight(String): void
+  - checkValidUpdate(Flight, Date, Date): boolean
+  + updateFlight(String, double, String, String, String, String, String, int, String, String, String): ResponseEntity<?>
+  + getFlightByNumber(String): ResponseEntity<?>
+}
+class HomeController {
+  + HomeController(): 
+  + home(): String
+}
+class Passenger {
+  + Passenger(String, String, String, int, String, String, String, String, String): 
+  + Passenger(): 
+  - password: String
+  - reservations: List<Reservation>
+  - username: String
+  - id: String
+  - age: int
+  - gender: String
+  - middlename: String
+  - email: String
+  - firstname: String
+  - mobile: String
+  - lastname: String
+   reservations: List<Reservation>
+   password: String
+   middlename: String
+   gender: String
+   age: int
+   email: String
+   lastname: String
+   firstname: String
+   username: String
+   id: String
+   mobile: String
+}
+class PassengerController {
+  + PassengerController(): 
+  + updatePassenger(String, String, String, String, Integer, String, String, String): ResponseEntity<?>
+  + getPassenger(String): ResponseEntity<?>
+  + createPassenger(String, String, String, Integer, String, String, String, String, String): ResponseEntity<?>
+  + deletePassenger(String): ResponseEntity<?>
+}
+interface PassengerRepository << interface >> {
+  + findById(String): Optional<Passenger>
+  + findByMobileAndPassword(String, String): Passenger
+  + findByUsernameAndPassword(String, String): Passenger
+}
+class PassengerService {
+  + PassengerService(): 
+  + createPassenger(String, String, String, int, String, String, String, String, String): ResponseEntity<?>
+  + deleteReservation(Reservation, Passenger): void
+  - updateFlightSeats(Flight): void
+  + getPassenger(String): ResponseEntity<?>
+  + updatePassenger(String, String, String, String, int, String, String, String): ResponseEntity<?>
+  + deletePassenger(String): ResponseEntity<?>
+}
+class Plane {
+  + Plane(): 
+  + Plane(String, int, String, String): 
+  - id: int
+  - model: String
+  - capacity: int
+  - manufacturer: String
+   description: String
+   manufacturer: String
+   id: int
+   model: String
+   capacity: int
+}
+interface PlaneRepository << interface >> {
+  + findById(String): Optional<Plane>
+}
+class Reservation {
+  + Reservation(): 
+  + Reservation(String, String, double, Passenger, List<Flight>): 
+  - fromLocation: String
+  - price: double
+  - passenger: Passenger
+  - reservationNumber: String
+  - destination: String
+  - flights: List<Flight>
+   reservationNumber: String
+   passenger: Passenger
+   fromLocation: String
+   flights: List<Flight>
+   price: double
+   destination: String
+}
+class ReservationController {
+  + ReservationController(): 
+  + cancelReservation(String): ResponseEntity<?>
+  + createReservation(String, List<String>): ResponseEntity<?>
+  + updateReservation(String, List<String>, List<String>): ResponseEntity<?>
+  + getReservation(String): ResponseEntity<?>
+}
+interface ReservationRepository << interface >> {
+  + findByPassenger(Passenger): List<Reservation>
+  + findAllByFlightsIn(List<Flight>): List<Reservation>
+  + findByReservationNumber(String): Reservation
+}
+class ReservationService {
+  + ReservationService(): 
+  + getReservation(String): ResponseEntity<?>
+  + cancelReservation(String): ResponseEntity<?>
+  - increaseAvailableFlightSeats(List<Flight>): void
+  - getFlightList(List<String>): List<Flight>
+  - calculatePrice(List<Flight>): double
+  - reduceAvailableFlightSeats(List<Flight>): void
+  - isTimeOverlapForSamePerson(String, List<Flight>): boolean
+  + createReservation(String, List<String>): ResponseEntity<?>
+  + updateReservation(String, List<String>, List<String>): ResponseEntity<?>
+  - isTimeOverlapWithinReservation(List<Flight>): boolean
+  - isSeatsAvailable(List<Flight>): boolean
+}
+class Response {
+  + Response(): 
+  + Response(int, String): 
+  - code: int
+  - message: String
+  + toString(): String
+  + equals(Object): boolean
+  + hashCode(): int
+  # canEqual(Object): boolean
+   code: int
+   message: String
+}
+
+@enduml
